@@ -4,6 +4,11 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1" metadata-complete="true">
 
+  <!--解决内存泄漏-->
+  <listener>
+    <listener-class>se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventorListener</listener-class>
+  </listener>
+
   <!-- 注意：classpath*的意思是将test里的resources类路径也加载进来 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -12,6 +17,8 @@
       classpath:spring-mvc.xml
     </param-value>
   </context-param>
+
+
 
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
